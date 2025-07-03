@@ -1,0 +1,6 @@
+
+Adding documents...
+Added document with ID: example
+
+All documents in the system:
+- example.txt (ID: example, Added: 2025-06-06T09:45:47.712758)

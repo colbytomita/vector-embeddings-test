@@ -1,0 +1,1 @@
+This document demonstrates how to use OpenAI's API for generating vector embeddings from text. 
