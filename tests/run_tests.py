@@ -98,6 +98,18 @@ def run_manual_tests():
     
     return "Manual tests checklist provided"
 
+def run_search_test():
+    """Run the search functionality test."""
+    from tests import test_search
+    test_search.test_search()
+    return "Search functionality working"
+
+def run_syntax_test():
+    """Run the syntax check test."""
+    from tests import test_syntax
+    test_syntax.test_syntax()
+    return "Syntax check completed"
+
 def run_quick_smoke_test():
     """Run a quick smoke test to verify basic functionality."""
     print("\n💨 Quick Smoke Test")
@@ -147,6 +159,8 @@ def main():
     test_results.append(run_test("Caching Test", run_caching_test))
     test_results.append(run_test("Performance Test", run_performance_test))
     test_results.append(run_test("Error Handling Test", run_error_test))
+    test_results.append(run_test("Search Test", run_search_test))
+    test_results.append(run_test("Syntax Test", run_syntax_test))
     
     # Provide manual test checklist
     test_results.append(run_test("Manual Test Checklist", run_manual_tests))

@@ -11,13 +11,13 @@ def test_search():
     dm = DocumentManager()
     print(f"✅ Loaded {len(dm.embeddings_cache)} documents from cache")
     
-    # Test queries
+    # Test queries that match the actual test document content
     test_queries = [
-        "agile development",
-        "development methodologies", 
-        "scrum methodology",
-        "software development",
-        "waterfall model"
+        "software engineering",
+        "artificial intelligence", 
+        "machine learning",
+        "neural networks",
+        "programming"
     ]
     
     for query in test_queries:

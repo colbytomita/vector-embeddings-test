@@ -163,7 +163,7 @@ class MockDocumentManager:
                     "id": doc_id,
                     "filename": doc["original_filename"],
                     "file_type": doc.get("file_type", "unknown"),
-                    "added_date": doc["added_date"]
+                    "added_date": doc.get("added_date", "Unknown")
                 })
         except Exception as e:
             print(f"❌ Error listing documents: {e}")

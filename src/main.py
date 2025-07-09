@@ -557,7 +557,7 @@ class DocumentManager:
                         "filename": doc.get("original_filename", "Unknown"),
                         "file_type": doc.get("file_type", "unknown"),
                         "similarity": similarity,
-                        "content": doc.get("content", "")[:200] + "..." if len(doc.get("content", "")) > 200 else doc.get("content", "")
+                        "content": doc.get("content", "")[:2000] + "..." if len(doc.get("content", "")) > 2000 else doc.get("content", "")
                     })
             
             # Sort by similarity score
@@ -575,8 +575,8 @@ class ChatBot:
         """Chat with the bot using the vectorized documents as context."""
         for attempt in range(max_retries):
             try:
-                # Search for relevant documents
-                relevant_docs = self.doc_manager.search_by_query(user_input, threshold=0.6)
+                # Search for relevant documents with a lower threshold for better recall
+                relevant_docs = self.doc_manager.search_by_query(user_input, threshold=0.3)
                 
                 if not relevant_docs:
                     return "I don't have enough relevant information to answer that question. Try adding more documents or rephrasing your question."
@@ -586,19 +586,23 @@ class ChatBot:
                 for i, doc in enumerate(relevant_docs[:3], 1):  # Use top 3 most relevant
                     file_type_icon = "📄" if doc.get("file_type") in [".txt", ".md"] else "🖼️" if doc.get("file_type") in [".png", ".jpg", ".jpeg", ".gif", ".bmp", ".tiff"] else "📄"
                     context += f"{i}. {file_type_icon} {doc['filename']} (similarity: {doc['similarity']:.2%})\n"
-                    context += f"   Content: {doc['content']}\n\n"
+                    # Truncate content if too long to avoid token limits
+                    content = doc['content']
+                    if len(content) > 4000:
+                        content = content[:4000] + "..."
+                    context += f"   Content: {content}\n\n"
                 
                 # Create the prompt
-                prompt = f"{context}\n\nUser question: {user_input}\n\nPlease answer the user's question based on the information in the documents above. If the documents don't contain enough information to answer the question, say so."
+                prompt = f"{context}\n\nUser question: {user_input}\n\nPlease provide a comprehensive answer based on the information in the documents above. Include all relevant details and be thorough in your response. If the documents don't contain enough information to answer the question completely, say so."
                 
                 # Get response from OpenAI
                 response = client.chat.completions.create(
                     model="gpt-3.5-turbo",
                     messages=[
-                        {"role": "system", "content": "You are a helpful assistant that answers questions based on the provided documents. Be concise and accurate."},
+                        {"role": "system", "content": "You are a helpful assistant that answers questions based on the provided documents. Provide comprehensive and detailed answers. If you need to list multiple items, be thorough and complete."},
                         {"role": "user", "content": prompt}
                     ],
-                    max_tokens=500,
+                    max_tokens=1500,
                     temperature=0.7
                 )
                 
@@ -728,7 +732,7 @@ def list_documents_interactive(doc_manager):
         print(f"{i}. {file_type_icon} {doc['filename']}")
         print(f"   ID: {doc['id']}")
         print(f"   Type: {doc.get('file_type', 'unknown')}")
-        print(f"   Added: {doc['added_date']}")
+        print(f"   Added: {doc.get('added_date', 'Unknown')}")
         print()
 
 def get_valid_choice(prompt, max_value, allow_back=True):
