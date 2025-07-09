@@ -1,0 +1,99 @@
+1. What Is a Development Methodology?
+A development methodology is a framework that structures, plans, and controls the process of building an information system. By prescribing phases, roles, artifacts and practices, it helps teams:
+
+Manage complexity
+
+Reduce risk
+
+Improve quality
+
+Adapt to change
+
+2. Traditional (Plan-Driven) Models
+Waterfall
+A linear, phase-by-phase flow: Requirements → Design → Implementation → Verification → Maintenance.
+
+When to use: Well-understood domain, stable requirements, regulatory needs.
+
+Pros: Clear milestones, easy to measure progress.
+
+Cons: Inflexible to changing requirements; late feedback.
+
+V-Model
+Extends Waterfall by pairing each development phase with a corresponding testing phase (e.g., requirements ⇄ acceptance testing, design ⇄ system testing).
+
+When to use: Safety-critical systems where verification at each level is vital.
+
+Spiral
+Iterative risk-driven approach: each “spiral” cycle addresses high-risk elements first, then moves to next cycle.
+
+When to use: Large, complex projects with significant uncertainty.
+
+Pros: Early risk mitigation; flexible.
+
+Cons: Can be heavyweight and costly if not carefully managed.
+
+3. Agile & Iterative Models
+Agile (Umbrella)
+Emphasizes individuals and interactions, working software, customer collaboration, and responding to change over rigid plan adherence.
+
+Scrum
+Cadence: Time-boxed sprints (usually 1–4 weeks)
+
+Roles: Product Owner, Scrum Master, Dev Team
+
+Artifacts: Backlog, Sprint Plan, Burndown Chart
+
+Pros: Fast feedback, high transparency
+
+Cons: Requires experienced teams and strong discipline
+
+Kanban
+Cadence: Continuous flow, pull-based WIP limits
+
+Board: Visualize work in columns (To Do → Doing → Done)
+
+Pros: Flexible priorities, minimizes work-in-progress
+
+Cons: Less structure can lead to unclear planning if ungoverned
+
+Extreme Programming (XP)
+Practices: Pair programming, Test-Driven Development, continuous integration, refactoring
+
+When to use: Teams needing high code quality and rapid iteration
+
+4. Lean Software Development
+Inspired by Lean manufacturing: eliminate waste, amplify learning, decide as late as possible, deliver as fast as possible, empower the team, build integrity in, see the whole.
+
+Key tools: Value stream mapping, Kaizen (continuous improvement)
+
+Pros: Highly efficient, fosters continuous improvement
+
+Cons: Cultural shift required; may clash with traditional governance
+
+5. DevOps
+Bridges development and operations to enable continuous delivery and deployment:
+
+Practices: Infrastructure as code, automation (CI/CD), monitoring & feedback loops
+
+Goal: Ship features quickly and reliably, then learn from real-world usage
+
+6. Rapid Application Development (RAD)
+Focuses on quick development and iteration of prototypes over strict planning.
+
+When to use: Projects with loosely defined requirements that can be refined via feedback.
+
+Pros: Fast time-to-market, stakeholder involvement
+
+Cons: Can sacrifice architectural rigor if overused
+
+7. Choosing the Right Fit
+Stable vs. Changing Requirements: Waterfall/V-Model for stability; Agile/DevOps for change.
+
+Risk Profile: Spiral when risk is high up front.
+
+Team Experience: XP and Scrum need seasoned, self-organizing teams.
+
+Regulatory Constraints: V-Model often mandated in safety/security contexts.
+
+Speed vs. Structure: RAD and Kanban for speed; Waterfall for structure.
